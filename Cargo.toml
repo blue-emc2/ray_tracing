@@ -1,0 +1,6 @@
+[workspace]
+resolver = "2"
+members = [
+    "step1_ppm",
+    "step2_vec3",
+]
