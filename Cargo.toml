@@ -2,5 +2,5 @@
 resolver = "2"
 members = [
     "step1_ppm",
-    "step2_vec3",
+    "step2_vec3", "step3_ray",
 ]
