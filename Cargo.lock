@@ -13,3 +13,7 @@ version = "0.1.0"
 [[package]]
 name = "step3_ray"
 version = "0.1.0"
+
+[[package]]
+name = "step4_camera"
+version = "0.1.0"
