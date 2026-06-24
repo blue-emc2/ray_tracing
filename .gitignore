@@ -23,3 +23,5 @@ rustc-ice-*.txt
 .DS_Store
 # Windows
 Thumbs.db
+
+image.ppm
