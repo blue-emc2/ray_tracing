@@ -13,6 +13,20 @@ use vec3::{Color, Point3, Vec3, unit_vector};
 
 use crate::{hittable::Hittable, hittable_list::HittableList, sphere::Sphere};
 
+fn random_unit_vector() -> Vec3 {
+    loop {
+        let p = Vec3::new(
+            rand::random_range(-1.0..1.0),
+            rand::random_range(-1.0..1.0),
+            rand::random_range(-1.0..1.0),
+        );
+
+        if p.length_squared() < 1.0 {
+            return p.unit_vector();
+        }
+    }
+}
+
 fn ray_color(r: &Ray, world: &HittableList, depth: i32) -> Color {
     if depth <= 0 {
         return Vec3::new(0., 0., 0.);
@@ -20,11 +34,9 @@ fn ray_color(r: &Ray, world: &HittableList, depth: i32) -> Color {
 
     if let Some(rec) = world.hit(r, 0.001, f64::INFINITY) {
         let new_origin = rec.p; // ヒット点が新しいレイの始点になる
-        let new_direction = Vec3::new(
-            rec.normal.x + rand::random_range(-1.0..1.0),
-            rec.normal.y + rand::random_range(-1.0..1.0),
-            rec.normal.z + rand::random_range(-1.0..1.0),
-        );
+        // 拡散反射：法線 + 単位球面上のランダムベクトル。
+        // 法線方向に偏りつつランダムに散るので、表面付近ほど反射が集まる（Lambertian分布の近似）
+        let new_direction = rec.normal + random_unit_vector();
         let new_ray = Ray::new(new_origin, new_direction);
         return 0.5 * ray_color(&new_ray, world, depth - 1);
     }
