@@ -2,5 +2,5 @@
 resolver = "2"
 members = [
     "step1_ppm",
-    "step2_vec3", "step3_ray", "step4_camera", "step5_sphere", "step6_2_hittable", "step6_3_hittable_list", "step6_normals", "step7_antialiasing",
+    "step2_vec3", "step3_ray", "step4_camera", "step5_sphere", "step6_2_hittable", "step6_3_hittable_list", "step6_normals", "step7_antialiasing", "step8_diffuse",
 ]
